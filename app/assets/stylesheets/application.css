@@ -21,3 +21,6 @@ table#movies th a{
     color: maroon;
     text-decoration: underline;
 }
+table#movies th{
+    background-color: bisque;
+}
