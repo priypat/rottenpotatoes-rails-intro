@@ -14,14 +14,19 @@ class MoviesController < ApplicationController
     @all_ratings = ['G','PG','PG-13','R']
     
     if params[:sort] == 'title'
-      if params[:ratings]
-        @movies = Movie.where(rating: params[:ratings].keys).order(:title)
+      if params[:ratings] || session[:ratings]
+        @movies = Movie.where(rating: session[:ratings].keys).order(:title)
       else
         @movies = Movie.order(:title)
       end
       @title_hilite = 'hilite'
     elsif params[:sort] == 'release_date'
-      @movies = Movie.order(:release_date)
+       if params[:ratings] || session[:ratings]
+        @movies = Movie.where(rating: session[:ratings].keys).order(:release_date)
+      else
+        @movies = Movie.order(:release_date)
+      end
+      
       @release_hilite = 'hilite'
     else
       @movies = Movie.all
