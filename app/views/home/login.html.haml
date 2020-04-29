@@ -1,0 +1,35 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 Welcome to our site!
+
+
+#content
+  .left.column
+    %h3= link_to "Home",root_url
+//   .right.column
+//   - if current_user
+//     Signed in as: current_user.name
+//     = link_to 'Sign Out',sign_out,:method => :delete
+//   - else
+//     =link_to "auth/twitter"
+    
+//     // %h3= link_to "Sign Out", 'sign_out', :method=>
+//     // = button_to 'Delete', 'sign_out',:method => :delete 
+//     // , :confirm => 'Are you sure?', :class => 'btn btn-primary'
+// // = link_to "SignOut", method: :delete 
+
+- if current_user
+  Signed in as: #{current_use.name} - #{image_tag(@auth['info']['image'])}#{link_to "Sign Out",'sign_out', :method => :delete}
+- else
+  = link_to "auth/twitter" do
+    = image_tag('twitter.png')
+- flash.each do |key,value|
+  .alert.alert-info= value
+- if current_user
+  .text-center
+    %h1
+      Welcome, #{current_user.name}
+    %h4
+      Logged in with ->
+      %strong
+        %em= @auth['provider']
+    = image_tag('logo.png')

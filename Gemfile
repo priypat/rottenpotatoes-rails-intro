@@ -60,4 +60,5 @@ group :production do
   gem 'rails_12factor'
 end
 
-
+#SSO with Twitter gems
+gem 'omniauth-twitter'
